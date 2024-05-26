@@ -62,6 +62,7 @@ public class WebSecurityConfig {
                 authorizeHttpRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // resources 접근 허용 설정
                         .requestMatchers("/api/user/**").permitAll() // '/api/user/'로 시작하는 요청 모두 접근 허가
+                        .requestMatchers("/actuator/health").permitAll() // /actuator/health 엔드포인트는 인증 없이 접근 가능
                         .anyRequest().authenticated() // 그 외 모든 요청 인증처리
         );
 
