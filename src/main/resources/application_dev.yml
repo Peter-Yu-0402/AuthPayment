@@ -1,0 +1,54 @@
+spring:
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: ${DB_url}
+    username: ${DB_username}
+    password: ${DB_password}
+    driver-class-name: org.postgresql.Driver
+
+springdoc:
+  api-docs:
+    groups:
+      enabled: true
+    path: /api-docs
+  swagger-ui:
+    path: /index.html
+    groups-order: asc
+  cache:
+    disabled: true
+  model-and-view-allowed: true
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+
+logging:
+  file:
+    name: logs/devcamp.log
+  logback:
+    rolling policy:
+      max-file-size: 50MB
+      max-history: 7
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+
+jwt:
+  secret:
+    key: ${JWT_secret_key}
+
+ADMIN_TOKEN: ${JWT_adminToken}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
